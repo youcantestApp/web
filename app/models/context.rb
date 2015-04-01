@@ -1,4 +1,4 @@
-class Context
+class Context < Base
   include Mongoid::Document
   field :url, type: String
 

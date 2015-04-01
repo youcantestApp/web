@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
-  get 'test/save'
+  post 'test/insert'
+  post 'test/publish'
 
   get 'test/getAll'
 
-  get 'test/get'
+  get 'test/get/:testId' => 'test#get'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

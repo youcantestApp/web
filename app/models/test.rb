@@ -1,4 +1,4 @@
-class Test
+class Test < Base
   include Mongoid::Document
 
   store_in collection:"tests"

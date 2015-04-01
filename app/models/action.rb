@@ -1,4 +1,4 @@
-class Action
+class Action < Base
   include Mongoid::Document
   field :type, type: String
   field :selector, type: String
