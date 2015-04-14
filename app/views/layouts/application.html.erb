@@ -1,14 +1,70 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Youcantestruby</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+    <!doctype html>
+    <html class="no-js">
+    <head>
+      <meta charset="utf-8">
+      <base href="/">
+      <title>Youcantest!</title>
 
-<%= yield %>
+      <meta name="description" content="">
+      <meta name="viewport" content="width=device-width">
 
-</body>
-</html>
+      <%= csrf_meta_tags %>
+      <%= stylesheet_link_tag    'application', media: 'all' %>
+
+    </head>
+        <body ng-app="youcantest">
+        <div class="header">
+          <div class="navbar navbar-default" role="navigation">
+            <div class="container">
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#js-navbar-collapse">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#/">Youcantest!</a>
+              </div>
+
+              <div class="collapse navbar-collapse" id="js-navbar-collapse">
+
+                <ul class="nav navbar-nav">
+                  <li class="active"><a href="#/">Home</a></li>
+                  <li><a ng-href="#/suites">My Test Suites</a></li>
+                  <li><a ng-href="#/tests">My Tests</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="container">
+          <%= yield %>
+          <div ng-view=""></div>
+        </div>
+
+        <div class="footer">
+          <div class="container">
+            <p><span class="glyphicon glyphicon-heart"></span> youcantest! @ 2015</p>
+          </div>
+        </div>
+
+
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+        <script>
+            !function (A, n, g, u, l, a, r) {
+                A.GoogleAnalyticsObject = l, A[l] = A[l] || function () {
+                    (A[l].q = A[l].q || []).push(arguments)
+                }, A[l].l = +new Date, a = n.createElement(g),
+                        r = n.getElementsByTagName(g)[0], a.src = u, r.parentNode.insertBefore(a, r)
+            }(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+            ga('create', 'UA-XXXXX-X');
+            ga('send', 'pageview');
+        </script>
+
+        <%= javascript_include_tag 'application' %>
+
+    </body>
+    </html>

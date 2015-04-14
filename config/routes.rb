@@ -1,10 +1,15 @@
 Rails.application.routes.draw do
+
+  root :to => 'index#index'
+
   post 'test/insert'
   post 'test/publish'
 
   get 'test/getAll'
 
   get 'test/get/:testId' => 'test#get'
+
+  post 'auth/login'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
