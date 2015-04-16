@@ -10,7 +10,7 @@ var youcantestApp = angular.module('youcantest', [
         //'ngTouch',
         //'ui.utils.masks',
         'ui.bootstrap',
-        'ui.bootstrap.tplst s',
+        'ui.bootstrap.tpls',
         //'uiGmapgoogle-maps'
     ])
     .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
