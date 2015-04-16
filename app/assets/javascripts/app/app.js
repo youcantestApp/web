@@ -6,20 +6,26 @@ var youcantestApp = angular.module('youcantest', [
         //'ngMessages',
         //``'ngResource',
         'ngRoute',
-        'ngSanitize'
+        'ngSanitize',
         //'ngTouch',
         //'ui.utils.masks',
+        'ui.bootstrap',
+        'ui.bootstrap.tplst s',
         //'uiGmapgoogle-maps'
     ])
     .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
         $routeProvider
             .when('/', {
                 templateUrl: 'assets/app/home/partials/home.html',
-                controller: 'HomeCtrl'
+                controller: 'HomeCtrl as vm'
             })
             .when('/tests', {
                 templateUrl: 'assets/app/tests/partials/list.html',
-                controller: 'TestListCtrl'
+                controller: 'TestListCtrl as vm'
+            })
+            .when('/tests/add', {
+                templateUrl: 'assets/app/tests/partials/add.html',
+                controller: 'TestAddCtrl as vm'
             })
             //.when('/repair', {
             //    templateUrl: 'views/repair.html',

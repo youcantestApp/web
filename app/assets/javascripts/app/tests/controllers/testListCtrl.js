@@ -3,11 +3,13 @@
 angular.module('youcantest').controller('TestListCtrl', function (testRepository) {
 	var vm = this;
 
-    var tests = undefined;
+    vm.loading = true;
 
     (function () {
         testRepository.getAll().then(function (response) {
-           tests =  response.data;
+           vm.tests =  response.data;
+        }).finally(function () {
+            vm.loading = false;
         });
     })();
 });
