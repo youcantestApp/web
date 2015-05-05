@@ -1,0 +1,17 @@
+<div class="action">
+    <div class="row">
+        <div class="col-sm-2 actionType dropdown">
+            <select ng-model="vm.selectedType" ng-options="value.label for (key, value) in vm.types">
+            </select>
+        </div>
+        <div class="col-sm-1">
+            <a href="javascript:void(0);" ng-click="vm.remove()">X</a>
+        </div>
+    </div>
+
+    <div class="selected">
+        <action-open-url action="vm.action"  ng-if="vm.selectedType === vm.types.OPEN_URL"></action-open-url>
+        <action-click action="vm.action" ng-if="vm.selectedType === vm.types.CLICK"></action-click>
+        <action-set-value action="vm.action" ng-if="vm.selectedType === vm.types.SET_VALUE"></action-set-value>
+    </div>
+</div>

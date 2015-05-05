@@ -2,6 +2,27 @@
     <h3>Create New Test</h3>
 </div>
 
+<div class="actions">
+    <div clas="input-group">
+        <label for="input_context">Context</label>
+        <input id="input_context" placeholder="example : www.google.com/page/1" type="text" ng-model="vm.test.context" />
+    </div>
+    <div class="new-action" >
+        <button type="button" class="btn btn-primary"  ng-click="vm.addAction()">New Action</button>
+    </div>
+    <div ng-repeat="action in vm.actions">
+        <action-selector action="action" index="$index" on-remove="vm.removeAction(index)"></action-selector>
+    </div>
+    <br/><br/>
+    <div class="new-assert" >
+        <button type="button" class="btn btn-primary"  ng-click="vm.addAssert()">New Assert</button>
+    </div>
+    <div ng-repeat="assert in vm.asserts">
+        <assert-selector assert="assert" index="$index" on-remove="vm.removeAssert(index)"></assert-selector>
+    </div>
+</div>
+
+<br/><br/>
 <div>
     <button ng-click="vm.save()"  class="btn btn-success">Create</button>
     <button ng-click="vm.cancel()"  class="btn btn-warning">Cancel</button>

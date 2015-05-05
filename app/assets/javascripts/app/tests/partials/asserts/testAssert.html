@@ -1,0 +1,17 @@
+<div class="assert">
+    <div class="row">
+        <div class="col-sm-2  assertType dropdown">
+            <select ng-model="vm.selectedType" ng-options="value.label for (key, value) in vm.types">
+            </select>
+        </div>
+        <div class="col-sm-1">
+            <a href="javascript:void(0);" ng-click="vm.remove()">X</a>
+        </div>
+    </div>
+
+    <div class="selected">
+        <assert-has-class assert="vm.assert"  ng-if="vm.selectedType === vm.types.HAS_CLASS"></assert-has-class>
+        <assert-value assert="vm.assert"  ng-if="vm.selectedType === vm.types.ASSERT_VALUE"></assert-value>
+        <assert-check-url assert="vm.assert"  ng-if="vm.selectedType === vm.types.CHECK_URL"></assert-check-url>
+    </div>
+</div>
