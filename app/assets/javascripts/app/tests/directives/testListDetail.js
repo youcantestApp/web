@@ -21,6 +21,12 @@ angular.module('youcantest').directive('testListDetail', function () {
                     });
                 })
             };
+
+            vm.publish = function () {
+                testRepository.publish(vm.element._id.$oid).then(function () {
+                    alert('published');
+                });
+            };
         }
     }
 });

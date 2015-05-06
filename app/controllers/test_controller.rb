@@ -51,12 +51,26 @@ class TestController < ApplicationController
   def publish
     @testId = params[:id]
 
+    if (!@testId)
+      render :json => {:error => "undefined testId"}.to_json, :status => 400
+      return
+    end
+
     begin
-      Publisher.publish("test_queue", { :testId => @testId } )
+      @schedule = Schedule.new
+
+      @schedule.scheduleDate = DateTime.now
+      @schedule.testId = @testId
+
+      @schedule.save
+
+      Publisher.publish("test_queue", { :scheduleId => @schedule[:_id].to_str } )
     rescue
-      render :json => {:error => "badRequestOnPublish"}.to_json, :status => 400
+      render :json => {:error => "badRequestOnPublish"}.to_json, :status => 500
+      return
     ensure
       render :json => {:response => "ok" }.to_json, :status => 200
+      return
     end
   end
 end
