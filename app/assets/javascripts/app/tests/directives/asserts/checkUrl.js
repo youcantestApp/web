@@ -12,6 +12,8 @@ angular.module('youcantest').directive('assertCheckUrl', function () {
 
             $scope.assert.type = ASSERT_TYPE.CHECK_URL;
 	        vm.assert = $scope.assert;
+
+            vm.assert.value = undefined;
         }
     }
 });

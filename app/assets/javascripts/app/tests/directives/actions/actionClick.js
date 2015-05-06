@@ -13,6 +13,8 @@ angular.module('youcantest').directive('actionClick', function () {
             $scope.action.type =  ACTION_TYPE.CLICK;
 
             vm.action = $scope.action;
+
+            vm.action.selector = undefined;
         }
     }
 });

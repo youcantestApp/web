@@ -1,11 +1,11 @@
 <div>
-    <h3>You have {{::vm.tests.length}} tests</h3>
+    <h3>You have {{vm.tests.length}} tests</h3>
     <div ng-repeat="element in vm.tests">
-        <test-list-detail element="element" />
+        <test-list-detail element="element" index="$index" on-delete="vm.deleteItem(idx)"/>
     </div>
     <div ng-if="vm.tests.length === 0 && !vm.loading">There are no registered tests yet.</div>
 </div>
 
 <div>
-    <a ng-href="#/tests/add"  class="btn btn-primary">Create New Test</a>
+    <a ng-href="/tests/add"  class="btn btn-primary">Create New Test</a>
 </div>

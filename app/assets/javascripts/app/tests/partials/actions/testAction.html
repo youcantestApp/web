@@ -1,4 +1,4 @@
-<div class="action">
+<div class="action" ng-class="{ 'test-item-error': vm.action.error === true }">
     <div class="row">
         <div class="col-sm-2 actionType dropdown">
             <select ng-model="vm.selectedType" ng-options="value.label for (key, value) in vm.types">

@@ -1,4 +1,4 @@
-<div class="assert">
+<div class="assert" ng-class="{ 'test-item-error': vm.assert.error === true }">
     <div class="row">
         <div class="col-sm-2  assertType dropdown">
             <select ng-model="vm.selectedType" ng-options="value.label for (key, value) in vm.types">

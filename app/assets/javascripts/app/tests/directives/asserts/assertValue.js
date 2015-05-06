@@ -12,6 +12,9 @@ angular.module('youcantest').directive('assertValue', function () {
 
             $scope.assert.type = ASSERT_TYPE.ASSERT_VALUE;
 	        vm.assert = $scope.assert;
+
+            vm.assert.selector = undefined;
+            vm.assert.value = undefined;
         }
     }
 });

@@ -31,3 +31,5 @@ gulp.task('libs', function() {
         //.pipe(uglify())
         //.pipe(rename({ extname: '.min.js' }))
         //.pipe(gulp.dest(JS_LIB_DEST));
+
+gulp.task('default', ['libs']);

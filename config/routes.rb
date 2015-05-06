@@ -2,8 +2,14 @@ Rails.application.routes.draw do
 
   root :to => 'index#index'
 
+  get 'home' => 'index#index'
+  get 'tests' => 'index#index'
+  get 'suites' => 'index#index'
+  get 'tests/add' => 'index#index'
+
   post 'test/insert'
   post 'test/publish'
+  post 'test/delete'
 
   get 'test/getAll'
 

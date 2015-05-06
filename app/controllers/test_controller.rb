@@ -6,6 +6,19 @@ class TestController < ApplicationController
     render json: @tests
   end
 
+  def delete
+    @testId = params[:id]
+
+    if(@testId)
+      @test = Test.find(@testId)
+
+      @test.delete
+      render :json => {:status => "ok"}.to_json
+      return
+    end
+
+    render :json => {:error => "documentNotFound"}.to_json, :status => 404
+  end
   def get
     @testId = params[:testId]
 

@@ -8,8 +8,13 @@ angular.module('youcantest').factory('testRepository', function ($http) {
         return $http.post('test/delete', {id: id});
     }
 
+    function add(object) {
+        return $http.post('test/insert', object);
+    }
+
     return {
         getAll : getAll,
+        add: add,
         delete : del
     };
 

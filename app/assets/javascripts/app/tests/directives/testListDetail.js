@@ -4,7 +4,9 @@ angular.module('youcantest').directive('testListDetail', function () {
         templateUrl: 'assets/app/tests/partials/testListDetail.html',
         restrict: 'E',
         scope: {
-            element: '='
+            element: '=',
+            index: '=',
+            onDelete: '&'
         },
         controllerAs: 'vm',
         controller: function ($scope, modalService, testRepository) {
@@ -14,7 +16,9 @@ angular.module('youcantest').directive('testListDetail', function () {
 
             vm.remove = function () {
                 modalService.openConfirmationModal('delete test', 'are you sure?', 'yes', 'no').then(function () {
-                    testRepository.delete(vm.element._id);
+                    testRepository.delete(vm.element._id.$oid).then(function () {
+                       $scope.onDelete({idx: $scope.index});
+                    });
                 })
             };
         }

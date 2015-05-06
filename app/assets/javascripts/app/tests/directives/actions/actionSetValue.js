@@ -13,6 +13,9 @@ angular.module('youcantest').directive('actionSetValue', function () {
 	        $scope.action.type =  ACTION_TYPE.SET_VALUE;
 
 	        vm.action = $scope.action;
+
+            vm.action.value = undefined;
+            vm.action.selector = undefined;
         }
     }
 });

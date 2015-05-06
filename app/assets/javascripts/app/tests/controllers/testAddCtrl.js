@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('youcantest').controller('TestAddCtrl', function (testRepository) {
+angular.module('youcantest').controller('TestAddCtrl', function ($location, testRepository) {
 	var vm = this;
 
     vm.loading = true;
@@ -30,7 +30,58 @@ angular.module('youcantest').controller('TestAddCtrl', function (testRepository)
     vm.removeAssert = removeAssert;
 
     function save() {
-        console.log(vm.test.context, vm.asserts, vm.actions);
+        var valid = true;
+        vm.actions.forEach(function (element) {
+           if(element.error === true)  {
+               valid = false;
+               return false;
+           }
+        });
+
+        if(valid === true) {
+            vm.asserts.forEach(function (element) {
+                if(element.error === true)  {
+                    valid = false;
+                    return false;
+                }
+            });
+        }
+
+
+        if(!valid) {
+            alert('invalid data');
+            return;
+        }
+
+        var object = {
+            context: {url: vm.test.context },
+            actions: undefined,
+            asserts: undefined
+        }
+
+        object.actions = _.map(vm.actions, function (element) {
+            element.type = element.type.id;
+            delete element.index;
+            delete element.error;
+
+            return element;
+        });
+
+        object.asserts = _.map(vm.asserts, function (element) {
+            element.type = element.type.id;
+            delete element.index;
+            delete element.error;
+
+            return element;
+        });
+
+        testRepository.add({data: object}).then(function () {
+            alert('test added');
+
+            $location.path('/tests');
+        }, function() {
+            alert('error!');
+        });
     };
     vm.save = save;
 
