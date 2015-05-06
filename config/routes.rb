@@ -6,14 +6,20 @@ Rails.application.routes.draw do
   get 'tests' => 'index#index'
   get 'suites' => 'index#index'
   get 'tests/add' => 'index#index'
+  get 'schedules' => 'index#index'
+  get 'schedules/:id/results' => 'index#index'
 
   post 'test/insert'
   post 'test/publish'
   post 'test/delete'
-
   get 'test/getAll'
 
   get 'test/get/:testId' => 'test#get'
+
+
+  get 'schedule/getAll'
+
+  get 'result/getBySchedule'
 
   post 'auth/login'
 

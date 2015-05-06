@@ -1,0 +1,16 @@
+<div>
+    <h3>You have {{vm.tests.length}} tests scheduleds</h3>
+    <div class="container">
+        <div class="row" ng-repeat="element in vm.tests">
+            <div class="col-sm-2">{{::element.schedule._id.$oid}}</div>
+            <div class="col-sm-4">{{::element.schedule.scheduleDate}}</div>
+            <div class="col-sm-2">{{::element.schedule.testId}}</div>
+            <div ng-if="element.schedule.resultId" class="col-sm-1">
+                <a ng-href="/schedules/{{::element.schedule._id.$oid}}/results">see results</a>
+            </div>
+        </div>
+    </div>
+    <div ng-if="vm.tests.length === 0 && !vm.loading">There are no registered tests yet.</div>
+
+</div>
+

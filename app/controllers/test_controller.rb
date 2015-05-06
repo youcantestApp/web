@@ -1,9 +1,9 @@
 class TestController < ApplicationController
   skip_before_action :verify_authenticity_token
   def getAll
-    @tests = Test.all
+    @schedules = Test.all
 
-    render json: @tests
+    render json: @schedules
   end
 
   def delete

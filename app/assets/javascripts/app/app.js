@@ -27,13 +27,21 @@ var youcantestApp = angular.module('youcantest', [
                 templateUrl: 'assets/app/tests/partials/add.html',
                 controller: 'TestAddCtrl as vm'
             })
-            //.when('/repair', {
-            //    templateUrl: 'views/repair.html',
-            //    controller: 'RepairCtrl'
-            //})
+            .when('/schedules', {
+                templateUrl: 'assets/app/schedules/partials/list.html',
+                controller: 'ScheduleListCtrl as vm'
+            })
+            .when('/schedules/:id/results', {
+                templateUrl: 'assets/app/schedules/partials/results.html',
+                controller: 'ScheduleResultsCtrl as vm'
+            })
             .otherwise({
                 redirectTo: '/'
             });
 
         $locationProvider.html5Mode(true);
-    }]);
+    }]).run(function ($rootScope, $location) {
+        $rootScope.$on('$routeChangeSuccess', function () {
+           ga('send', 'pageview', $location.path());
+        });
+    });

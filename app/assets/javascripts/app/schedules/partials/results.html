@@ -1,0 +1,22 @@
+<div>
+    <h3>Results for test scheduled {{vm.result.scheduleId}}</h3>
+    <div>
+        <div class="container">
+            passed
+            <div class="row" ng-repeat="element in vm.result.passed">
+                <div class="col-sm-2">{{::element.message}}</div>
+            </div>
+            <div ng-if="!vm.result.passed.length && !vm.loading">There are no passed.</div>
+        </div>
+        <div class="container">
+            fails
+            <div class="row" ng-repeat="element in vm.result.fails">
+                <div class="col-sm-2">{{::element.message}}</div>
+            </div>
+            <div ng-if="!vm.result.fails.length && !vm.loading">There are no fails.</div>
+
+        </div>
+    </div>
+    <div ng-if="!vm.result && !vm.loading">There are no registered tests yet.</div>
+</div>
+
