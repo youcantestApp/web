@@ -16,6 +16,7 @@ angular.module('youcantest').directive('actionSelector', function () {
             vm.types = ACTION_TYPE;
             vm.selectedType = undefined;
             vm.error = false;
+            vm.index = $scope.index;
 
             vm.remove = function () {
                 unbindWatchElement();
@@ -40,7 +41,7 @@ angular.module('youcantest').directive('actionSelector', function () {
             var bind = undefined;
 
             function bindWatchElement() {
-                bind = $scope.$watch('action', function (newVal, oldVal) {
+                bind = $scope.$watch('action', function (newVal, oldVal, currScope) {
                     if (newVal === oldVal) return;
 
                     if (newVal !== undefined) {

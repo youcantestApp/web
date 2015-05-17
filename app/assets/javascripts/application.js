@@ -10,6 +10,6 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require ./libs/angular/angular.min.js
 //= require ./libs/jquery/dist/jquery.min.js
+//= require ./libs/angular/angular.min.js
 //= require_tree .

@@ -3,6 +3,8 @@ class Test < Base
 
   store_in collection:"tests"
 
+  field :name, type: String
+  field :description, type: String
 
   embeds_one :context
   embeds_many :asserts

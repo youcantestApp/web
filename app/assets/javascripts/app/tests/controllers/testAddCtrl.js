@@ -5,6 +5,12 @@ angular.module('youcantest').controller('TestAddCtrl', function ($location, test
 
     vm.loading = true;
 
+    vm.test = {
+        name: undefined,
+        context: undefined,
+        description: undefined
+    };
+
     vm.actions = [];
 
     function addAction() {
@@ -29,32 +35,70 @@ angular.module('youcantest').controller('TestAddCtrl', function ($location, test
     };
     vm.removeAssert = removeAssert;
 
-    function save() {
+    function checkValid() {
         var valid = true;
+
+        if(!vm.test.name || !vm.test.name.length)  {
+            valid = false;
+            angular.element('div.name-input').addClass('has-error');
+        }
+        else {
+            angular.element('div.name-input').removeClass('has-error');
+        }
+
+        var regexpContext = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/;
+        if(!vm.test.context || !vm.test.context.length || !regexpContext.test(vm.test.context))  {
+            valid = false;
+            angular.element('div.context-input').addClass('has-error');
+        }
+        else {
+            angular.element('div.context-input').removeClass('has-error');
+        }
+
+        if(!vm.test.description || !vm.test.description.length)  {
+            valid = false;
+            angular.element('div.description-input').addClass('has-error');
+        }
+        else {
+            angular.element('div.description-input').removeClass('has-error');
+        }
+
+        if(!vm.actions.length) {
+            valid = false;
+        }
+
+        if(!vm.asserts.length) {
+            valid = false;
+        }
+
         vm.actions.forEach(function (element) {
-           if(element.error === true)  {
-               valid = false;
-               return false;
-           }
+            if(element.error === true)  {
+                valid = false;
+            }
         });
 
         if(valid === true) {
             vm.asserts.forEach(function (element) {
                 if(element.error === true)  {
                     valid = false;
-                    return false;
                 }
             });
         }
 
+        return valid;
+    }
 
-        if(!valid) {
+    function save() {
+
+        if(!checkValid()) {
             alert('invalid data');
             return;
         }
 
         var object = {
-            context: {url: vm.test.context },
+            name: vm.test.name,
+            description: vm.test.description,
+            context: { url: vm.test.context },
             actions: undefined,
             asserts: undefined
         }
