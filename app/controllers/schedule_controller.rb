@@ -20,7 +20,7 @@ class ScheduleController < ApplicationController
       if (item[:resultId])
         @resultData = Result.find(item[:resultId])
         if (@resultData)
-          @result[:testResult] = @resultData.testResult
+          @result[:testResult] = @resultData.testSucceed
         end
       end
 
