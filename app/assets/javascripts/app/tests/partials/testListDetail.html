@@ -1,6 +1,13 @@
 <div class="row">
     <div class="col-md-8" data-id="{{ ::vm.element._id }}">
         <div>
+            <label>test name:</label> {{::vm.element.name }}
+        </div>
+        <div>
+            <label>description:</label>
+            {{::vm.element.description}}
+        </div>
+        <div>
             <label>context:</label> {{::vm.element.context.url}}
         </div>
         <div>

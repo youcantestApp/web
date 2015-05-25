@@ -4,14 +4,19 @@ class Result < Base
   store_in collection:"testResults"
 
   field :scheduleId, type: String
-  embeds_many :passed, class_name: "ResultData"
-  embeds_many :fails, class_name: "ResultData"
+  field :testName, type: String
+  field :testSucceed, type: Boolean
+  embeds_many :actions, class_name: "ActionResultData"
+  embeds_many :asserts, class_name: "AssertResultData"
 end
 
-class ResultData < Base
+class ActionResultData < Base
   include Mongoid::Document
+  include Mongoid::Attributes::Dynamic
+end
 
-  field :message, type: String
 
-  embedded_in :result
+class AssertResultData < Base
+  include Mongoid::Document
+  include Mongoid::Attributes::Dynamic
 end

@@ -65,11 +65,10 @@ class TestController < ApplicationController
       @schedule.save
 
       Publisher.publish("test_queue", { :scheduleId => @schedule[:_id].to_str } )
+      render :json => {:response => "ok" }.to_json, :status => 200
+      return
     rescue
       render :json => {:error => "badRequestOnPublish"}.to_json, :status => 500
-      return
-    ensure
-      render :json => {:response => "ok" }.to_json, :status => 200
       return
     end
   end

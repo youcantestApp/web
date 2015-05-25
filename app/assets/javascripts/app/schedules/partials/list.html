@@ -1,16 +1,38 @@
-<div>
-    <h3>You have {{vm.tests.length}} tests scheduleds</h3>
-    <div class="container">
-        <div class="row" ng-repeat="element in vm.tests">
-            <div class="col-sm-2">{{::element.schedule._id.$oid}}</div>
-            <div class="col-sm-4">{{::element.schedule.scheduleDate}}</div>
-            <div class="col-sm-2">{{::element.schedule.testId}}</div>
-            <div ng-if="element.schedule.resultId" class="col-sm-1">
-                <a ng-href="/schedules/{{::element.schedule._id.$oid}}/results">see results</a>
-            </div>
-        </div>
-    </div>
+<h3>You have {{vm.tests.length}} tests scheduleds</h3>
+<div class="container">
+    <table ng-if="vm.tests.length > 0 && !vm.loading" class="table table-hover">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Test Name</th>
+            <th>Scheduled On</th>
+            <th>Test Status</th>
+            <th>Executated On</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr class="" ng-repeat="element in vm.tests">
+                <td>{{::$index}}</td>
+                <td>{{::element.testName}}</td>
+                <td>{{::element.schedule.scheduleDate}}</td>
+                <td>
+                    <span ng-if="element.schedule.resultId">
+                        {{::element.testResult ? "success" : "fail" }}
+                    </span>
+                    <span ng-if="!element.schedule.resultId">queued</span>
+                </td>
+                <td colspan="2" ng-if="!element.schedule.resultId">
+                    -
+                </td>
+                <td ng-if="element.schedule.resultId">
+                    {{::element.schedule.executeDate }}
+                </td>
+                <td ng-if="element.schedule.resultId">
+                   <a ng-if="element.schedule.resultId" ng-href="/schedules/{{::element.schedule._id.$oid}}/results">see results</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <div ng-if="vm.tests.length === 0 && !vm.loading">There are no registered tests yet.</div>
-
 </div>
-
