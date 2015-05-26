@@ -13,7 +13,7 @@ class ScheduleController < ApplicationController
       if (item[:testId])
         @test = Test.find(item[:testId])
         if (@test != nil)
-          @result[:testname] = @test.name || "default"
+          @result[:testName] = @test.name || "default"
         end
       end
 
