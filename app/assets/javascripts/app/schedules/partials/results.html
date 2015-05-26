@@ -1,22 +1,47 @@
 <div>
     <h3>Results for test scheduled {{vm.result.scheduleId}}</h3>
-    <div>
-        <div class="container">
-            passed
-            <div class="row" ng-repeat="element in vm.result.passed">
-                <div class="col-sm-2">{{::element.message}}</div>
-            </div>
-            <div ng-if="!vm.result.passed.length && !vm.loading">There are no passed.</div>
-        </div>
-        <div class="container">
-            fails
-            <div class="row" ng-repeat="element in vm.result.fails">
-                <div class="col-sm-2">{{::element.message}}</div>
-            </div>
-            <div ng-if="!vm.result.fails.length && !vm.loading">There are no fails.</div>
 
+    <div class="container">
+        <div class="row">
+            <label>Test name: </label>
+            <span>{{::vm.result.testName}}</span>
         </div>
+        <div class="row">
+            <label>Test Result: </label>
+            <span>{{::vm.result.testSucceed  ? 'Passed' : 'Fail'}}</span>
+        </div>
+
+        <div class="row">
+            <h4>Actions</h4>
+        </div>
+        <div class="row" ng-repeat="element in vm.result.actions">
+            <div class="container">
+                <div class="col-sm-6" ng-if="element.action.type === 'click'">
+                    clicked on selector <span>{{::element.action.selector}}</span>
+                </div>
+                <div class="col-sm-6" ng-if="element.action.type === 'setValue'">
+                    set the value <span>{{::element.action.value}}</span> on selector <span>{{::element.action.selector}}</span>
+                </div>
+                <div class="col-sm-2">{{::element.success ? 'Passed' : 'Fail'}}</div>
+            </div>
+        </div>
+
+        <div class="row">
+            <h4>Asserts</h4>
+        </div>
+        <div class="row" ng-repeat="element in vm.result.asserts">
+            <div class="container">
+                <div class="col-sm-6" ng-if="element.assert.type === 'checkUrl'">
+                    Check if url contains <span>{{::element.assert.value}}</span>
+                </div>
+                <div class="col-sm-6" ng-if="element.assert.type === 'assertValue'">
+                    check if selector <span>{{::element.assert.selector}}</span>
+                    has value <span>{{::element.assert.value}}</span>
+                </div>
+                <div class="col-sm-2">{{::element.success ? 'Passed' : 'Fail'}}</div>
+            </div>
+        </div>
+        <div ng-if="!vm.result && !vm.loading">There are no registered tests yet.</div>
     </div>
-    <div ng-if="!vm.result && !vm.loading">There are no registered tests yet.</div>
 </div>
 
