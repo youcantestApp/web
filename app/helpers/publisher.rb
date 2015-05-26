@@ -28,8 +28,8 @@ class Publisher
   # put any specific RabbitMQ settings
   # like host or port
   def self.connection
-    #@connection ||= Bunny.new(:host => 'rabbit', :user => 'admin', :pass => 'admin').tap do |c|
-      @connection ||= Bunny.new(:host => 'rabbit', :user => 'guest', :pass => 'guest').tap do |c|
+    @connection ||= Bunny.new(:host => 'rabbit', :user => 'admin', :pass => 'admin').tap do |c|
+      #@connection ||= Bunny.new(:host => 'rabbit', :user => 'guest', :pass => 'guest').tap do |c|
       c.start
     end
   end

@@ -8,7 +8,7 @@
         </div>
         <div class="row">
             <label>Test Result: </label>
-            <span>{{::vm.result.testSucceed  ? 'Passed' : 'Fail'}}</span>
+            <span>{{vm.result.testSucceed == true ? 'Success' : 'Fail'}}</span>
         </div>
 
         <div class="row">
