@@ -1,17 +1,11 @@
 'use strict';
 
 var youcantestApp = angular.module('youcantest', [
-        //'ngAnimate',
         'ipCookie',
-        //'ngMessages',
-        //``'ngResource',
         'ngRoute',
         'ngSanitize',
-        //'ngTouch',
-        //'ui.utils.masks',
         'ui.bootstrap',
         'ui.bootstrap.tpls',
-        //'uiGmapgoogle-maps'
     ])
     .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
         $routeProvider
@@ -22,6 +16,10 @@ var youcantestApp = angular.module('youcantest', [
             .when('/tests', {
                 templateUrl: 'assets/app/tests/partials/list.html',
                 controller: 'TestListCtrl as vm'
+            })
+            .when('/tests/:id/detail', {
+                templateUrl: 'assets/app/tests/partials/testViewDetail.html',
+                controller: 'TestViewCtrl as vm'
             })
             .when('/tests/add', {
                 templateUrl: 'assets/app/tests/partials/add.html',

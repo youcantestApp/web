@@ -19,6 +19,7 @@ class TestController < ApplicationController
 
     render :json => {:error => "documentNotFound"}.to_json, :status => 404
   end
+
   def get
     @testId = params[:testId]
 

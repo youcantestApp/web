@@ -4,6 +4,9 @@ angular.module('youcantest').factory('testRepository', function ($http) {
     function getAll() {
         return $http.get('test/getAll');
     }
+    function getById(id) {
+        return $http.get('test/get/' + id);
+    }
     function del(id) {
         return $http.post('test/delete', {id: id});
     }
@@ -18,7 +21,8 @@ angular.module('youcantest').factory('testRepository', function ($http) {
         getAll : getAll,
         add: add,
         publish: publish,
-        delete : del
+        delete : del,
+        get: getById
     };
 
 });

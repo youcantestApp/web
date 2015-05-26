@@ -1,0 +1,46 @@
+<div>
+    <h3>TestId: {{vm.test.id}}</h3>
+
+    <div class="container">
+        <div class="row">
+            <label>Test name: </label>
+            <span>{{::vm.test.name}}</span>
+        </div>
+        <div class="row">
+            <label>Description: </label>
+            <span>{{::vm.test.description}}</span>
+        </div>
+        <div class="row">
+            <h4>Actions : {{::vm.test.actions.length}}</h4>
+        </div>
+        <div class="row" ng-repeat="element in vm.test.actions">
+            <div class="container">
+                <div class="col-sm-6" ng-if="element.type === 'click'">
+                    click on selector <span>{{::element.selector}}</span>
+                </div>
+                <div class="col-sm-6" ng-if="element.type === 'setValue'">
+                    set the value <span>{{::element.value}}</span> on selector <span>{{::element.selector}}</span>
+                </div>
+            </div>
+            <span ng-if="$index !== (vm.test.actions.length - 1)">THEN</span>
+            <div ng-if="!vm.test.actions && !vm.loading">There are no registered tests actions yet.</div>
+        </div>
+
+        <div class="row">
+            <h4>Asserts : {{::vm.test.asserts.length}}</h4>
+        </div>
+        <div class="row" ng-repeat="element in vm.test.asserts">
+            <div class="container">
+                <div class="col-sm-6" ng-if="element.type === 'checkUrl'">
+                    Check if url contains <span>{{::element.value}}</span>
+                </div>
+                <div class="col-sm-6" ng-if="element.type === 'assertValue'">
+                    check if selector <span>{{::element.selector}}</span>
+                    has value <span>{{::element.value}}</span>
+                </div>
+                <span ng-if="$index !== (vm.test.asserts.length - 1)">THEN CHECK</span>
+            </div>
+        </div>
+        <div ng-if="!vm.test.asserts && !vm.loading">There are no registered tests asserts yet.</div>
+    </div>
+</div>

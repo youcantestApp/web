@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'tests' => 'index#index'
   get 'suites' => 'index#index'
   get 'tests/add' => 'index#index'
+  get 'tests/:id/detail' => 'index#index'
   get 'schedules' => 'index#index'
   get 'schedules/:id/results' => 'index#index'
 
