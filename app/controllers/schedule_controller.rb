@@ -5,7 +5,7 @@ class ScheduleController < ApplicationController
 
     @data = Array.new
 
-    @schedules = Schedule.all
+    @schedules = Schedule.where(user: @userName)
 
     @schedules.each_with_index { |item, idx|
       @result = {:testName => "default", :schedule => item, :testResult => nil}

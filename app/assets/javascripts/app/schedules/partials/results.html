@@ -38,6 +38,10 @@
                     check if selector <span>{{::element.assert.selector}}</span>
                     has value <span>{{::element.assert.value}}</span>
                 </div>
+                <div class="col-sm-6" ng-if="element.assert.type === 'hasClass'">
+                    check if selector <span>{{::element.assert.selector}}</span>
+                    has class <span>{{::element.assert.value}}</span>
+                </div>
                 <div class="col-sm-2">{{::element.success ? 'Passed' : 'Fail'}}</div>
             </div>
         </div>

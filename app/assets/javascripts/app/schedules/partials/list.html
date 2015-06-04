@@ -29,10 +29,10 @@
                     {{::element.schedule.executionDate}}
                 </td>
                 <td ng-if="element.schedule.resultId">
-                   <a ng-if="element.schedule.resultId" ng-href="/schedules/{{::element.schedule._id.$oid}}/results">see results</a>
+                   <a ng-if="element.schedule.resultId" ng-href="{{::main.user}}/schedules/{{::element.schedule._id.$oid}}/results">see results</a>
                 </td>
             </tr>
         </tbody>
     </table>
-    <div ng-if="vm.tests.length === 0 && !vm.loading">There are no registered tests yet.</div>
+    <div ng-if="vm.tests.length === 0 && !vm.loading">There are no registered schedules yet.</div>
 </div>

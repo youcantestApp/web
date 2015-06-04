@@ -3,6 +3,8 @@ class Result < Base
 
   store_in collection:"testResults"
 
+  field :user, type: String
+
   field :scheduleId, type: String
   field :testName, type: String
   field :testSucceed, type: Boolean

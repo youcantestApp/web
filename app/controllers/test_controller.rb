@@ -1,9 +1,15 @@
 class TestController < ApplicationController
   skip_before_action :verify_authenticity_token
-  def getAll
-    @schedules = Test.all
 
-    render json: @schedules
+  def getAll
+    begin
+      @tests = Test.where(user: @userName)
+    rescue
+      render :json => Array.new
+      return
+    end
+
+    render json: @tests
   end
 
   def delete
@@ -11,6 +17,10 @@ class TestController < ApplicationController
 
     if(@testId)
       @test = Test.find(@testId)
+
+      if(@test.user != @userName)
+        return returnUnauthorizedAction()
+      end
 
       @test.delete
       render :json => {:status => "ok"}.to_json
@@ -26,8 +36,11 @@ class TestController < ApplicationController
     if(@testId)
       @test = Test.find(@testId)
 
-      render json: @test
+      if(@test.user != @userName)
+        return returnUnauthorizedAction()
+      end
 
+      render json: @test
       return
     end
 
@@ -39,6 +52,7 @@ class TestController < ApplicationController
 
     @test = Test.new
     @test.attributes = @params.to_hash
+    @test.user = @userName
 
     begin
       @test.save
@@ -57,15 +71,27 @@ class TestController < ApplicationController
       return
     end
 
+    @test = Test.find(@testId)
+
+    if(!@test)
+      render :json => {:error => "test not found"}.to_json, :status => 404
+      return
+    end
+
+    if(@test.user != @userName)
+      return returnUnauthorizedAction()
+    end
+
     begin
       @schedule = Schedule.new
-
       @schedule.scheduleDate = DateTime.now
       @schedule.testId = @testId
+      @schedule.user = @userName
 
       @schedule.save
 
       Publisher.publish("test_queue", { :scheduleId => @schedule[:_id].to_str } )
+
       render :json => {:response => "ok" }.to_json, :status => 200
       return
     rescue

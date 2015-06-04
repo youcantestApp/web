@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('youcantest').controller('TestAddCtrl', function ($location, testRepository) {
+angular.module('youcantest').controller('TestAddCtrl', function ($location, $routeParams, testRepository) {
 	var vm = this;
 
     vm.loading = true;
@@ -122,7 +122,7 @@ angular.module('youcantest').controller('TestAddCtrl', function ($location, test
         testRepository.add({data: object}).then(function () {
             alert('test added');
 
-            $location.path('/tests');
+            $location.path('/'+ routeParams.user +'/tests');
         }, function() {
             alert('error!');
         });

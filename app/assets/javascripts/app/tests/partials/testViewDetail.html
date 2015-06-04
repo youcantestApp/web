@@ -22,7 +22,7 @@
                     set the value <span>{{::element.value}}</span> on selector <span>{{::element.selector}}</span>
                 </div>
             </div>
-            <span ng-if="$index !== (vm.test.actions.length - 1)">THEN</span>
+            <span ng-if="$index !== (vm.test.actions.length - 1)">Then</span>
             <div ng-if="!vm.test.actions && !vm.loading">There are no registered tests actions yet.</div>
         </div>
 
@@ -38,8 +38,12 @@
                     check if selector <span>{{::element.selector}}</span>
                     has value <span>{{::element.value}}</span>
                 </div>
-                <span ng-if="$index !== (vm.test.asserts.length - 1)">THEN CHECK</span>
+                <div class="col-sm-6" ng-if="element.type === 'hasClass'">
+                    check if selector <span>{{::element.selector}}</span>
+                    has class <span>{{::element.value}}</span>
+                </div>
             </div>
+            <span ng-if="$index !== (vm.test.asserts.length - 1)">Then check</span>
         </div>
         <div ng-if="!vm.test.asserts && !vm.loading">There are no registered tests asserts yet.</div>
     </div>

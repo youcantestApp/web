@@ -1,20 +1,24 @@
 
 
-angular.module('youcantest').factory('testRepository', function ($http) {
+angular.module('youcantest').factory('testRepository', function ($http, $routeParams) {
+    function getUser() {
+        return $routeParams.user;
+    }
+
     function getAll() {
-        return $http.get('test/getAll');
+        return $http.get(getUser() + '/test/getAll');
     }
     function getById(id) {
-        return $http.get('test/get/' + id);
+        return $http.get(getUser() + '/test/get/' + id);
     }
     function del(id) {
-        return $http.post('test/delete', {id: id});
+        return $http.post(getUser() + '/test/delete', {id: id});
     }
     function add(object) {
-        return $http.post('test/insert', object);
+        return $http.post(getUser() + '/test/insert', object);
     }
     function publish(id) {
-        return $http.post('test/publish', {id: id});
+        return $http.post(getUser() + '/test/publish', {id: id});
     }
 
     return {

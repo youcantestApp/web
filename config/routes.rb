@@ -1,28 +1,27 @@
 Rails.application.routes.draw do
 
-  root :to => 'index#index'
+  root :to => 'index#home'
 
-  get 'home' => 'index#index'
-  get 'tests' => 'index#index'
-  get 'suites' => 'index#index'
-  get 'tests/add' => 'index#index'
-  get 'tests/:id/detail' => 'index#index'
-  get 'schedules' => 'index#index'
-  get 'schedules/:id/results' => 'index#index'
+  #without user
+  get 'home' => 'index#home'
 
-  post 'test/insert'
-  post 'test/publish'
-  post 'test/delete'
-  get 'test/getAll'
+  #with user
+  scope '/:user/' do
+    get '' => 'index#index'
+    get 'schedules' => 'index#index'
+    get 'schedules/:id/results' => 'index#index'
+    get 'schedule/getAll'
+    get 'tests' => 'index#index'
+    get 'tests/add' => 'index#index'
+    get 'tests/:id/detail' => 'index#index'
+    post 'test/insert'
+    post 'test/publish'
+    post 'test/delete'
+    get 'test/getAll'
+    get 'test/get/:testId' => 'test#get'
 
-  get 'test/get/:testId' => 'test#get'
-
-
-  get 'schedule/getAll'
-
-  get 'result/getBySchedule'
-
-  post 'auth/login'
+    get 'result/getBySchedule'
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

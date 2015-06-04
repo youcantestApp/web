@@ -3,6 +3,8 @@ class Test < Base
 
   store_in collection:"tests"
 
+  field :user, type: String
+
   field :name, type: String
   field :description, type: String
 
