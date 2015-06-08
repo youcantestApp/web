@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     get 'tests/add' => 'index#index'
     get 'tests/:id/detail' => 'index#index'
     post 'test/insert'
-    post 'test/publish'
+    post 'test/schedule'
     post 'test/delete'
     get 'test/getAll'
     get 'test/get/:testId' => 'test#get'

@@ -1,0 +1,15 @@
+<div style="height:250px;">
+    <div>Test: {{::vm.test.name}}</div>
+    <div>
+        <div class="form-group">
+            <label class="control-label">Schedule this test to run:</label>
+            <div ng-repeat="type in vm.types">
+                <input id="radio_scheduleOn_{{$index}}" type="radio" ng-model="vm.scheduleOn" value="{{::type.value}}">{{::type.text}}</input>
+            </div>
+        </div>
+    </div>
+    <div>
+        <button class="btn btn-primary" style="float:right;" ng-click="vm.scheduleTest()">Schedule</button>
+        <button class="btn btn-danger" style="float:right;" ng-click="vm.cancel()">Cancel</button>
+    </div>
+</div>

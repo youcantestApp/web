@@ -17,14 +17,14 @@ angular.module('youcantest').factory('testRepository', function ($http, $routePa
     function add(object) {
         return $http.post(getUser() + '/test/insert', object);
     }
-    function publish(id) {
-        return $http.post(getUser() + '/test/publish', {id: id});
+    function schedule(id, period) {
+        return $http.post(getUser() + '/test/schedule', {id: id, period: period});
     }
 
     return {
         getAll : getAll,
         add: add,
-        publish: publish,
+        schedule: schedule,
         delete : del,
         get: getById
     };

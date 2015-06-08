@@ -63,11 +63,17 @@ class TestController < ApplicationController
     end
   end
 
-  def publish
+  def schedule
     @testId = params[:id]
+    @period = params[:period]
 
     if (!@testId)
       render :json => {:error => "undefined testId"}.to_json, :status => 400
+      return
+    end
+
+    if (!@period)
+      render :json => {:error => "undefined period"}.to_json, :status => 400
       return
     end
 
@@ -87,10 +93,13 @@ class TestController < ApplicationController
       @schedule.scheduleDate = DateTime.now
       @schedule.testId = @testId
       @schedule.user = @userName
+      @schedule.period = @period
 
       @schedule.save
 
-      Publisher.publish("test_queue", { :scheduleId => @schedule[:_id].to_str } )
+      if(@period == 0)
+        Publisher.publish("test_queue", { :scheduleId => @schedule[:_id].to_str } )
+      end
 
       render :json => {:response => "ok" }.to_json, :status => 200
       return

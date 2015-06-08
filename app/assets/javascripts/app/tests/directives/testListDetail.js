@@ -1,5 +1,5 @@
 'use strict';
-angular.module('youcantest').directive('testListDetail', function () {
+angular.module('youcantest').directive('testListDetail', function ($modal) {
     return {
         templateUrl: 'assets/app/tests/partials/testListDetail.html',
         restrict: 'E',
@@ -22,11 +22,28 @@ angular.module('youcantest').directive('testListDetail', function () {
                 })
             };
 
-            vm.publish = function () {
-                testRepository.publish(vm.element._id.$oid).then(function () {
-                    alert('published');
+
+            vm.scheduleTest = function () {
+                var modalInstance = $modal.open({
+                    animation: $scope.animationsEnabled,
+                    templateUrl: 'assets/app/tests/partials/scheduleTestModal.html',
+                    controller: 'ScheduleTestModalCtrl',
+                    controllerAs: 'vm',
+                    size: 'md',
+                    resolve : {
+                        selectedTest: function () {
+                            return vm.element;
+                        }
+                    }
                 });
-            };
+
+                modalInstance.result.then(function (selectedPeriod) {
+                    testRepository.schedule(vm.element._id.$oid, selectedPeriod).then(function () {
+                        alert('scheduled');
+                    });
+
+                });
+            }
         }
     }
 });
