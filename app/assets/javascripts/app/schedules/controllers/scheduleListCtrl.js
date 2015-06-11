@@ -1,10 +1,9 @@
 'use strict';
 
-angular.module('youcantest').controller('ScheduleListCtrl', function (scheduleRepository) {
+angular.module('youcantest').controller('ScheduleListCtrl', function (scheduleRepository, tab) {
 	var vm = this;
 
     vm.loading = true;
-    vm.activeTab = 'active';
 
     vm.changeTab = function(tab) {
         vm.activeTab = tab;
@@ -77,6 +76,6 @@ angular.module('youcantest').controller('ScheduleListCtrl', function (scheduleRe
     }
 
     (function () {
-        getActives();
+        vm.changeTab(tab);
     })();
 });

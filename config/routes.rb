@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     get '' => 'index#index'
 
     get 'schedules' => 'index#index'
+    get 'schedules/:tab' => 'index#index'
     get 'schedules/:id/results' => 'index#index'
 
     get 'schedule/getActives'

@@ -29,6 +29,27 @@ var youcantestApp = angular.module('youcantest', [
                 templateUrl: 'assets/app/schedules/partials/list.html',
                 controller: 'ScheduleListCtrl as vm'
             })
+            .when('/:user/schedules', {
+                redirectTo: '/:user/schedules/actives'
+            })
+            .when('/:user/schedules/actives', {
+                templateUrl: 'assets/app/schedules/partials/list.html',
+                controller: 'ScheduleListCtrl as vm',
+                resolve: {
+                    tab: function () {
+                        return 'active';
+                    }
+                }
+            })
+            .when('/:user/schedules/archiveds', {
+                templateUrl: 'assets/app/schedules/partials/list.html',
+                controller: 'ScheduleListCtrl as vm',
+                resolve: {
+                    tab: function () {
+                        return 'archived';
+                    }
+                }
+            })
             .when('/:user/schedules/:id/results', {
                 templateUrl: 'assets/app/schedules/partials/results.html',
                 controller: 'ScheduleResultsCtrl as vm'
