@@ -55,17 +55,17 @@ angular.module('youcantest').controller('TestAddCtrl', function ($location, $rou
             angular.element('div.context-input').removeClass('has-error');
         }
 
-        if(!vm.test.description || !vm.test.description.length)  {
-            valid = false;
-            angular.element('div.description-input').addClass('has-error');
-        }
-        else {
-            angular.element('div.description-input').removeClass('has-error');
-        }
+        //if(!vm.test.description || !vm.test.description.length)  {
+        //    valid = false;
+        //    angular.element('div.description-input').addClass('has-error');
+        //}
+        //else {
+        //    angular.element('div.description-input').removeClass('has-error');
+        //}
 
-        if(!vm.actions.length) {
-            valid = false;
-        }
+        //if(!vm.actions.length) {
+        //    valid = false;
+        //}
 
         if(!vm.asserts.length) {
             valid = false;
