@@ -25,12 +25,19 @@
                 <div class="col-sm-2">{{::element.success ? 'Passed' : 'Fail'}}</div>
             </div>
         </div>
+        <div ng-if="vm.result.actions.length === 0">There are no actions.</div>
 
         <div class="row">
             <h4>Asserts</h4>
         </div>
         <div class="row" ng-repeat="element in vm.result.asserts">
             <div class="container">
+                <div class="col-sm-6" ng-if="element.assert.type === 'isElementExists'">
+                    Check if element <span>{{::element.assert.selector}}</span> is exists
+                </div>
+                <div class="col-sm-6" ng-if="element.assert.type === 'isElementVisible'">
+                    Check if element <span>{{::element.assert.selector}}</span> is visible
+                </div>
                 <div class="col-sm-6" ng-if="element.assert.type === 'checkUrl'">
                     Check if url contains <span>{{::element.assert.value}}</span>
                 </div>

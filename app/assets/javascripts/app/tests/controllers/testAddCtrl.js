@@ -122,7 +122,7 @@ angular.module('youcantest').controller('TestAddCtrl', function ($location, $rou
         testRepository.add({data: object}).then(function () {
             alert('test added');
 
-            $location.path('/'+ routeParams.user +'/tests');
+            $location.path('/'+ $routeParams.user +'/tests');
         }, function() {
             alert('error!');
         });
