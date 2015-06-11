@@ -22,7 +22,20 @@ class TestController < ApplicationController
         return returnUnauthorizedAction()
       end
 
+      @schedules = Schedule.where(testId: @testId)
+
+      @schedules.each_with_index { |item, idx|
+        @results = Result.where(scheduleId: item._id)
+
+        @results.each_with_index { |el, idx|
+          el.delete
+        }
+
+        item.delete
+      }
+
       @test.delete
+
       render :json => {:status => "ok"}.to_json
       return
     end
@@ -97,7 +110,7 @@ class TestController < ApplicationController
 
       @schedule.save
 
-      if(@period == 0)
+      if(Integer(@period) == 0)
         Publisher.publish("test_queue", { :scheduleId => @schedule[:_id].to_str } )
       end
 
