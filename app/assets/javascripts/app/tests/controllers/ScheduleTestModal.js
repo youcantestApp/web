@@ -11,7 +11,7 @@ angular.module('youcantest').controller('ScheduleTestModalCtrl', function ($scop
         {value: '60', text: 'Every 60 minutes'},
         {value: '720', text: 'Every 12 hours'},
         {value: '1440', text: 'Every day'},
-        {value: '10080', text: 'Every week'}
+        {value: '10080', text: 'Every sunday'}
     ];
 
     vm.scheduleTest = function () {

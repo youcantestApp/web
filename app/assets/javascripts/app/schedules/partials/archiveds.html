@@ -1,0 +1,39 @@
+<h3>You have {{vm.tests.length}} archiveds scheduled tests</h3>
+<table ng-if="vm.tests.length > 0 && !vm.loading" class="table table-hover">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Schedule type</th>
+        <th>Last test status</th>
+        <th>Last execution on</th>
+        <th>Archived on</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="" ng-repeat="element in vm.tests">
+        <td>{{::element.testName}}</td>
+        <td>{{::vm.getPeriodText(element.schedule.period)}}</td>
+        <td>
+            <span ng-if="element.schedule.resultId">
+                {{::element.testResult ? "success" : "fail" }}
+            </span>
+            <span ng-if="!element.schedule.resultId">-</span>
+        </td>
+        <td colspan="2" ng-if="!element.schedule.resultId">
+            -
+        </td>
+        <td ng-if="element.schedule.resultId">
+            {{::element.schedule.executionDate}}
+        </td>
+        <td>
+            <input type="button" class="btn alert-info" value="Make active" ng-click="vm.activeItem(element.schedule._id.$oid)"></input>
+        </td>
+        <td>
+            <input type="button" class="btn alert-info" value="Delete" ng-click="vm.deleteItem(element.schedule._id.$oid)"></input>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<div ng-if="vm.tests.length === 0 && !vm.loading">There are no archived schedule tests.</div>

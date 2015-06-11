@@ -1,38 +1,12 @@
-<h3>You have {{vm.tests.length}} tests scheduleds</h3>
 <div class="container">
-    <table ng-if="vm.tests.length > 0 && !vm.loading" class="table table-hover">
-        <thead>
-        <tr>
-            <th>#</th>
-            <th>Test Name</th>
-            <th>Scheduled On</th>
-            <th>Test Status</th>
-            <th>Executated On</th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-            <tr class="" ng-repeat="element in vm.tests">
-                <td>{{::$index}}</td>
-                <td>{{::element.testName}}</td>
-                <td>{{::element.schedule.scheduleDate}}</td>
-                <td>
-                    <span ng-if="element.schedule.resultId">
-                        {{::element.testResult ? "success" : "fail" }}
-                    </span>
-                    <span ng-if="!element.schedule.resultId">queued</span>
-                </td>
-                <td colspan="2" ng-if="!element.schedule.resultId">
-                    -
-                </td>
-                <td ng-if="element.schedule.resultId">
-                    {{::element.schedule.executionDate}}
-                </td>
-                <td ng-if="element.schedule.resultId">
-                   <a ng-if="element.schedule.resultId" ng-href="{{::main.user}}/schedules/{{::element.schedule._id.$oid}}/results">see results</a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <div ng-if="vm.tests.length === 0 && !vm.loading">There are no registered schedules yet.</div>
+    <div class="row">
+        <div class="col-md-2">
+            <tabset vertical="true" type="pills">
+                <tab heading="Actives" ng-click="vm.changeTab('active')"></tab>
+                <tab heading="Archiveds" ng-click="vm.changeTab('archived')"></tab>
+            </tabset>
+        </div>
+        <div class="col-md-10" ng-if="vm.activeTab === 'active'" ng-include="'assets/app/schedules/partials/actives.html'"></div>
+        <div class="col-md-10" ng-if="vm.activeTab === 'archived'" ng-include="'assets/app/schedules/partials/archiveds.html'"></div>
+    </div>
 </div>

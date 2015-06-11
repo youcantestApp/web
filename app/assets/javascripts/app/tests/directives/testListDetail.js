@@ -17,7 +17,7 @@ angular.module('youcantest').directive('testListDetail', function ($modal) {
             vm.remove = function () {
                 modalService.openConfirmationModal('delete test', 'are you sure?', 'yes', 'no').then(function () {
                     testRepository.delete(vm.element._id.$oid).then(function () {
-                       $scope.onDelete({idx: $scope.index});
+                        $scope.onDelete({idx: $scope.index});
                     });
                 })
             };
@@ -30,7 +30,7 @@ angular.module('youcantest').directive('testListDetail', function ($modal) {
                     controller: 'ScheduleTestModalCtrl',
                     controllerAs: 'vm',
                     size: 'md',
-                    resolve : {
+                    resolve: {
                         selectedTest: function () {
                             return vm.element;
                         }

@@ -8,12 +8,20 @@ Rails.application.routes.draw do
   #with user
   scope '/:user/' do
     get '' => 'index#index'
+
     get 'schedules' => 'index#index'
     get 'schedules/:id/results' => 'index#index'
-    get 'schedule/getAll'
+
+    get 'schedule/getActives'
+    get 'schedule/getArchiveds'
+    post 'schedule/archive'
+    post 'schedule/delete'
+    post 'schedule/active'
+
     get 'tests' => 'index#index'
     get 'tests/add' => 'index#index'
     get 'tests/:id/detail' => 'index#index'
+
     post 'test/insert'
     post 'test/schedule'
     post 'test/delete'
