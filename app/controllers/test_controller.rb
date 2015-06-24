@@ -3,13 +3,34 @@ class TestController < ApplicationController
 
   def getAll
     begin
+      @results = Array.new
+
       @tests = Test.where(user: @userName)
+
+
+      @tests.each_with_index { |element, idx|
+        @periods = Array.new
+
+        @schedules = Schedule.where(testId: element._id, active: true)
+
+        @schedules.each_with_index { |item, index|
+          if(item[:period] > 0)
+            @periods.push({ :label  => item[:period] })
+          end
+        }
+
+        @result = element
+        @result[:periods] = @periods
+
+        @results.push(@result)
+      }
+
     rescue
       render :json => Array.new
       return
     end
 
-    render json: @tests
+    render json: @results
   end
 
   def delete
