@@ -38,6 +38,14 @@
                     check if selector <span>{{::element.selector}}</span>
                     has value <span>{{::element.value}}</span>
                 </div>
+                <div class="col-sm-6" ng-if="element.type === 'isElementVisible'">
+                    check if element with selector <span>{{::element.selector}}</span>
+                    is visible in page
+                </div>
+                <div class="col-sm-6" ng-if="element.type === 'isElementExists'">
+                    check if element with selector <span>{{::element.selector}}</span>
+                    exists in page
+                </div>
                 <div class="col-sm-6" ng-if="element.type === 'hasClass'">
                     check if selector <span>{{::element.selector}}</span>
                     has class <span>{{::element.value}}</span>
