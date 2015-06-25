@@ -142,4 +142,33 @@ class TestController < ApplicationController
       return
     end
   end
+
+  def getResults
+    begin
+      @results = Array.new
+
+      @tests = Test.where(user: @userName)
+
+
+      @tests.each_with_index { |element, idx|
+        @result = { :test => element, :lastResult => nil }
+
+        @lastResults = Result.where(testId: element[:_id].to_str)
+        if(@lastResults.length)
+          @lastResult = @lastResults.order_by(:executionDate.desc).first
+          @result[:lastResult] = @lastResult
+
+          @results.push(@result)
+        end
+      }
+
+    rescue
+      render :json => Array.new
+      return
+    end
+
+    render json: @results
+  end
+
+
 end

@@ -25,14 +25,7 @@ var youcantestApp = angular.module('youcantest', [
                 templateUrl: 'assets/app/tests/partials/add.html',
                 controller: 'TestAddCtrl as vm'
             })
-            .when('/:user/schedules', {
-                templateUrl: 'assets/app/schedules/partials/list.html',
-                controller: 'ScheduleListCtrl as vm'
-            })
-            .when('/:user/schedules', {
-                redirectTo: '/:user/schedules/actives'
-            })
-            .when('/:user/schedules/actives', {
+            .when('/:user/results', {
                 templateUrl: 'assets/app/schedules/partials/list.html',
                 controller: 'ScheduleListCtrl as vm',
                 resolve: {
@@ -41,16 +34,7 @@ var youcantestApp = angular.module('youcantest', [
                     }
                 }
             })
-            .when('/:user/schedules/archiveds', {
-                templateUrl: 'assets/app/schedules/partials/list.html',
-                controller: 'ScheduleListCtrl as vm',
-                resolve: {
-                    tab: function () {
-                        return 'archived';
-                    }
-                }
-            })
-            .when('/:user/schedules/:id/results', {
+            .when('/:user/results/:id/results', {
                 templateUrl: 'assets/app/schedules/partials/results.html',
                 controller: 'ScheduleResultsCtrl as vm'
             })

@@ -5,9 +5,12 @@ class Result < Base
 
   field :user, type: String
 
+  field :testId , type: String
   field :scheduleId, type: String
+  field :executionDate, type: DateTime
   field :testName, type: String
   field :testSucceed, type: Boolean
+
   embeds_many :actions, class_name: "ActionResultData"
   embeds_many :asserts, class_name: "AssertResultData"
 end

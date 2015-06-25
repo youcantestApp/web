@@ -11,6 +11,10 @@
             <label>context:</label> {{::vm.element.context.url}}
         </div>
         <div>
+            <label>schedules:</label>
+            <span ng-repeat="period in ::vm.element.periods"> every {{::period.label}} minutes; </span>
+        </div>
+        <div>
             <label>actions:</label> {{::vm.element.actions.length}}
             <label>asserts:</label> {{::vm.element.asserts.length}}
         </div>
