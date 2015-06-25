@@ -6,7 +6,6 @@ angular.module('youcantest').controller('ScheduleTestModalCtrl', function ($scop
     vm.test = selectedTest;
 
     vm.types = [
-        {value: '0', text: 'Once (Now)'},
         {value: '10', text: 'Every 10 minutes'},
         {value: '60', text: 'Every 60 minutes'},
         {value: '720', text: 'Every 12 hours'},

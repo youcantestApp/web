@@ -97,17 +97,12 @@ class TestController < ApplicationController
     end
   end
 
-  def schedule
+  def executeNow
     @testId = params[:id]
-    @period = params[:period]
+    @period = 0
 
     if (!@testId)
       render :json => {:error => "undefined testId"}.to_json, :status => 400
-      return
-    end
-
-    if (!@period)
-      render :json => {:error => "undefined period"}.to_json, :status => 400
       return
     end
 
@@ -124,21 +119,64 @@ class TestController < ApplicationController
 
     begin
       @schedule = Schedule.new
-      @schedule.scheduleDate = DateTime.now
       @schedule.testId = @testId
       @schedule.user = @userName
+
+      @schedule.scheduleDate = DateTime.now
       @schedule.period = @period
 
       @schedule.save
 
-      if(Integer(@period) == 0)
-        Publisher.publish("test_queue", { :scheduleId => @schedule[:_id].to_str } )
-      end
+      Publisher.publish("test_queue", { :scheduleId => @schedule[:_id].to_str } )
 
       render :json => {:response => "ok" }.to_json, :status => 200
       return
     rescue
       render :json => {:error => "badRequestOnPublish"}.to_json, :status => 500
+      return
+    end
+  end
+
+  def schedule
+    @testId = params[:id]
+    @period = params[:period]
+
+    if (!@testId)
+      render :json => {:error => "undefined testId"}.to_json, :status => 400
+      return
+    end
+
+    if (!@period || Integer(@period) <= 0)
+      render :json => {:error => "undefined period"}.to_json, :status => 400
+      return
+    end
+
+    @test = Test.find(@testId)
+
+    if(!@test)
+      render :json => {:error => "test not found"}.to_json, :status => 404
+      return
+    end
+
+    if(@test.user != @userName)
+      return returnUnauthorizedAction()
+    end
+
+    begin
+      @schedule = Schedule.find_or_create_by(testId: @testId)
+
+      @schedule.testId = @testId
+      @schedule.user = @userName
+
+      @schedule.scheduleDate = DateTime.now
+      @schedule.period = @period
+
+      @schedule.save
+
+      render :json => {:response => "ok" }.to_json, :status => 200
+      return
+    rescue
+      render :json => {:error => "error"}.to_json, :status => 400
       return
     end
   end
