@@ -1,0 +1,29 @@
+<div class="container">
+    <h3>You have {{vm.data.results.length}} results for test: {{vm.data.test.name}}</h3>
+    <table ng-if="vm.data.results.length > 0 && !vm.loading" class="table table-hover">
+        <thead>
+        <tr>
+            <th>test status</th>
+            <!--<th>schedule type</th>-->
+            <th>execution date</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="" ng-repeat="element in vm.data.results">
+            <!--<td>{{::element.scheduleType}}</td>-->
+            <td>
+                <span>
+                    {{::element.testSucceed ? "success" : "fail" }}
+                </span>
+            </td>
+            <td>
+                {{ ::element.executionDate }}
+            </td>
+            <td>
+                <a class="btn btn-info" ng-href="{{::main.user}}//resultDetail/{{::element._id.$oid}}">See Details</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

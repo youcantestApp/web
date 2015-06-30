@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     get  'test/get/:testId' => 'test#get'
 
     get  'result/getBySchedule'
+    get  'result/getListByTestId'
 
     get '/' => 'index#index'
     get '*path' => 'index#index'
