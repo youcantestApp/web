@@ -26,13 +26,8 @@ var youcantestApp = angular.module('youcantest', [
                 controller: 'TestAddCtrl as vm'
             })
             .when('/:user/results', {
-                templateUrl: 'assets/app/schedules/partials/list.html',
-                controller: 'ScheduleListCtrl as vm',
-                resolve: {
-                    tab: function () {
-                        return 'active';
-                    }
-                }
+                templateUrl: 'assets/app/results/partials/list.html',
+                controller: 'ResultListCtrl as vm',
             })
             .when('/:user/results/:id/results', {
                 templateUrl: 'assets/app/schedules/partials/results.html',

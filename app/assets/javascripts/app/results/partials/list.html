@@ -1,0 +1,34 @@
+<div class="container">
+    <h3>You have {{vm.tests.length}} tests sheduleds</h3>
+    <table ng-if="vm.tests.length > 0 && !vm.loading" class="table table-hover">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Last test status</th>
+            <th>Last execution on</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="" ng-repeat="element in vm.tests">
+            <td>{{::element.test.name}}</td>
+            <td>
+                <span ng-if="element.lastResult">
+                    {{::element.lastResult.testSucceed ? "success" : "fail" }}
+                </span>
+                <span ng-if="!element.lastResult">-</span>
+            </td>
+
+            <td ng-if="element.lastResult">
+                {{ ::element.lastResult.executionDate }}
+            </td>
+            <td ng-if="!element.lastResult">-</td>
+
+            <td>
+                <a ng-disabled="!element.lastResult" class="btn btn-info" ng-href="{{::main.user}}/results/{{::element.test._id.$oid}}/history">See History</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div ng-if="vm.tests.length === 0 && !vm.loading">There are no active schedules.</div>
+</div>

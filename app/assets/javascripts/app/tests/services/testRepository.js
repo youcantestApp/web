@@ -24,12 +24,16 @@ angular.module('youcantest').factory('testRepository', function ($http, $routePa
     function schedule(id, period) {
         return $http.post(GLOBALS.BASE_PATH + getUser() + '/test/schedule', {id: id, period: period});
     }
+    function getResults() {
+        return $http.get(GLOBALS.BASE_PATH + getUser() + '/tests/getResults');
+    }
 
     return {
         getAll : getAll,
         getResults : getResults,
         add: add,
         schedule: schedule,
+        getResults: getResults,
         delete : del,
         get: getById
     };
