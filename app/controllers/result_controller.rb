@@ -1,11 +1,11 @@
 class ResultController < ApplicationController
   skip_before_action :verify_authenticity_token
 
-  def getBySchedule
-    @scheduleId = params[:id]
+  def getById
+    @resultId = params[:id]
 
-    if(@scheduleId)
-      @result = Result.find_by(scheduleId: @scheduleId)
+    if(@resultId)
+      @result = Result.find(@resultId)
 
       render json: @result
       return

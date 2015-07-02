@@ -29,6 +29,10 @@ var youcantestApp = angular.module('youcantest', [
                 templateUrl: 'assets/app/results/partials/list.html',
                 controller: 'ResultListCtrl as vm',
             })
+            .when('/:user/resultDetail/:resultId', {
+                templateUrl: 'assets/app/results/partials/result.html',
+                controller: 'ResultDetailCtrl as vm',
+            })
             .when('/:user/results/:id/history', {
                 templateUrl: 'assets/app/results/partials/history.html',
                 controller: 'ResultHistoryListCtrl as vm'
