@@ -8,6 +8,8 @@
       <meta name="description" content="">
       <meta name="viewport" content="width=device-width">
 
+		  <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+		  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
       <%= csrf_meta_tags %>
       <%= stylesheet_link_tag    'application', media: 'all' %>
 
@@ -24,14 +26,24 @@
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" ng-href="/{{main.user}}">Youcantest! - {{main.user}}</a>
+                <a class="navbar-brand" ng-href="/{{main.user}}">Y</a>
               </div>
 
               <div class="collapse navbar-collapse" id="js-navbar-collapse">
 
                 <ul class="nav navbar-nav" ng-if="main.user">
-                  <li><a ng-href="/{{main.user}}/tests">My Tests</a></li>
-                  <li><a ng-href="/{{main.user}}/results">My Test Results</a></li>
+                  <li>
+                    <a ng-href="/{{main.user}}/tests">
+                      <i class="fa fa-stethoscope"></i>
+											My Tests
+										</a>
+									</li>
+                  <li>
+                    <a ng-href="/{{main.user}}/results">
+                      <i class="fa fa-file-o"></i>
+											My Test Results
+                    </a>
+                  </li>
                 </ul>
               </div>
             </div>
