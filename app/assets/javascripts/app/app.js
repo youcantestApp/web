@@ -1,11 +1,11 @@
 'use strict';
 
 var youcantestApp = angular.module('youcantest', [
-        'ipCookie',
         'ngRoute',
+		'ngCookies',
         'ngSanitize',
         'ui.bootstrap',
-        'ui.bootstrap.tpls',
+        'ui.bootstrap.tpls'
     ])
     .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
         $routeProvider

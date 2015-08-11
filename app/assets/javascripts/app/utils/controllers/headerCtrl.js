@@ -5,5 +5,6 @@ angular.module('youcantest').controller('HeaderCtrl', function ($rootScope) {
 
     $rootScope.$on('userSelected', function (event, data) {
         vm.user = data.user;
+        $rootscope.user = data.user;
     });
 });
