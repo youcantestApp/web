@@ -24,7 +24,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand">Youcantest!</a>
+        <a class="navbar-brand">Y</a>
       </div>
 
       <div class="collapse navbar-collapse" id="js-navbar-collapse">
@@ -34,7 +34,16 @@
 </div>
 
 <div class="container">
-  About here!
+  <div class="home-box" ng-controller="HomeWithoutUserCtrl as vm">
+    <h1>Welcome to Youcantest!</h1>
+    <div class="form-group context-input home-input-box">
+        <label class="control-label" for="input_context">Text your name to navigate to your test suite</label>
+          <div class="input-text">
+            <input class="form-control" placeholder="your name here" ng-keyup="$event.keyCode == 13 ? vm.go() : null" type="text" ng-model="vm.user">
+            <input type="button" class="btn btn-primary" value="go!" ng-click="vm.go()"></input>
+          </div>
+    </div>
+  </div>
 </div>
 
 <div class="footer">

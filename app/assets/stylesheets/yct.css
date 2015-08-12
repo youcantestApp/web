@@ -72,3 +72,24 @@ textarea {resize:none;}
 .btn-warning {margin:0 0 80px 30px;}
 
 div.actionType, div.assertType{width:350px !important;}
+
+
+div.home-box {
+    padding: 10% 0 0 20%;
+}
+div.home-input-box {
+    padding-top:20px;
+}
+div.home-box .input-text {
+    padding-top:10px;
+}
+
+
+div.input-text input {
+    width:275px !important;
+}
+
+div.input-text input.btn {
+    width:100px !important;
+
+}
