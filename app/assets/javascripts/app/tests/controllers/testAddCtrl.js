@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('youcantest').controller('TestAddCtrl', function ($location, $routeParams, testRepository) {
+angular.module('youcantest').controller('TestAddCtrl', function ($location, $routeParams, testRepository, trackrService) {
 	var vm = this;
 
     vm.loading = true;
@@ -14,24 +14,44 @@ angular.module('youcantest').controller('TestAddCtrl', function ($location, $rou
     vm.actions = [];
 
     function addAction() {
-        vm.actions.push({ type: undefined, index: vm.actions.length });
+      vm.actions.push({ type: undefined, index: vm.actions.length });
+
+			trackrService.trackEvt({
+				category: 'action',
+				action:'add',
+			});
     };
     vm.addAction = addAction;
 
     function removeAction(index) {
-        vm.actions.splice(index, 1);
+      vm.actions.splice(index, 1);
+
+			trackrService.trackEvt({
+				category: 'action',
+				action:'remove',
+			});
     };
     vm.removeAction = removeAction;
 
     vm.asserts = [];
 
     function addAssert() {
-        vm.asserts.push({ type: undefined, index: vm.asserts.length });
+      vm.asserts.push({ type: undefined, index: vm.asserts.length });
+
+			trackrService.trackEvt({
+				category: 'assert',
+				action:'add',
+			});
     };
     vm.addAssert = addAssert;
 
     function removeAssert(index) {
-        vm.asserts.splice(index, 1);
+      vm.asserts.splice(index, 1);
+
+			trackrService.trackEvt({
+				category: 'assert',
+				action:'remove',
+			});
     };
     vm.removeAssert = removeAssert;
 
@@ -119,7 +139,15 @@ angular.module('youcantest').controller('TestAddCtrl', function ($location, $rou
             return element;
         });
 
-        testRepository.add({data: object}).then(function () {
+        testRepository.add({data: object})
+				.then(function () {
+					trackrService.trackEvt({
+						category: 'test',
+						action:'add',
+						label:'actions:'+ vm.actions.length +' | asserts:' + vm.asserts.length
+					});
+				})
+				.then(function () {
             alert('test added');
 
             $location.path('/'+ $routeParams.user +'/tests');

@@ -1,5 +1,5 @@
 'use strict';
-angular.module('youcantest').directive('testListDetail', function ($modal) {
+angular.module('youcantest').directive('testListDetail', function ($modal, trackrService) {
     return {
         templateUrl: 'assets/app/tests/partials/testListDetail.html',
         restrict: 'E',
@@ -16,7 +16,14 @@ angular.module('youcantest').directive('testListDetail', function ($modal) {
 
             vm.remove = function () {
                 modalService.openConfirmationModal('delete test', 'are you sure?', 'yes', 'no').then(function () {
-                    testRepository.delete(vm.element._id.$oid).then(function () {
+                    testRepository.delete(vm.element._id.$oid)
+                    .then(function () {
+            					trackrService.trackEvt({
+            							category: 'test',
+            							action:'delete'
+            						});
+                    })
+                    .then(function () {
                         $scope.onDelete({idx: $scope.index});
                     });
                 })
@@ -38,7 +45,15 @@ angular.module('youcantest').directive('testListDetail', function ($modal) {
                 });
 
                 modalInstance.result.then(function (selectedPeriod) {
-                    testRepository.schedule(vm.element._id.$oid, selectedPeriod).then(function () {
+                    testRepository.schedule(vm.element._id.$oid, selectedPeriod)
+                    .then(function () {
+            					trackrService.trackEvt({
+          							category: 'test',
+          							action:'schedule',
+                        label: selectedPeriod
+          						});
+                    })
+                    .then(function () {
                         alert('scheduled');
                     });
 
@@ -47,5 +62,3 @@ angular.module('youcantest').directive('testListDetail', function ($modal) {
         }
     }
 });
-
-

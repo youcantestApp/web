@@ -1,5 +1,5 @@
 'use strict';
-angular.module('youcantest').directive('onboardingSteps', function ($rootScope, $cookies, modalService) {
+angular.module('youcantest').directive('onboardingSteps', function ($rootScope, $cookies, modalService, trackrService) {
 	return {
 		template: '<div></div>',
 		restrict: 'E',
@@ -20,11 +20,17 @@ angular.module('youcantest').directive('onboardingSteps', function ($rootScope, 
 			if(shouldShowModal) {
 				var modalResult = modalService.onboardingStepModal($scope.template, $scope.steps, $scope.size);
 
-				modalResult.finally(function() {
+				modalResult.then(function () {
+					trackrService.trackEvt({
+						category: 'onboarding',
+						action:'finish',
+						page: $scope.name
+					});
+				})
+				.finally(function() {
 					$cookies.put(COOKIE_KEY, true);
 				});
 			}
 		}
 	}
 });
-

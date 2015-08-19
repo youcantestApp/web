@@ -1,5 +1,5 @@
 'use strict';
-angular.module('youcantest').directive('assertSelector', function () {
+angular.module('youcantest').directive('assertSelector', function (trackrService) {
     return {
         templateUrl: 'assets/app/tests/partials/asserts/testAssert.html',
         restrict: 'E',
@@ -27,10 +27,21 @@ angular.module('youcantest').directive('assertSelector', function () {
                 if (newVal !== oldVal) {
                     vm.assert.error = true;
                     if (newVal !== undefined) {
-                        bindWatchElement();
+                      bindWatchElement();
+
+                			trackrService.trackEvt({
+                				category: 'assert',
+                				action: 'select_type',
+                        label: newVal.id
+                      });
                     }
                     else {
-                        unbindWatchElement();
+                      unbindWatchElement();
+
+                			trackrService.trackEvt({
+                				category: 'assert',
+                				action: 'unselect_type'
+                      });
                     }
                 }
             });
@@ -65,4 +76,3 @@ angular.module('youcantest').directive('assertSelector', function () {
         }
     }
 });
-

@@ -1,5 +1,5 @@
 'use strict';
-angular.module('youcantest').directive('actionSelector', function () {
+angular.module('youcantest').directive('actionSelector', function (trackrService) {
     return {
         templateUrl: 'assets/app/tests/partials/actions/testAction.html',
         restrict: 'E',
@@ -30,9 +30,20 @@ angular.module('youcantest').directive('actionSelector', function () {
                     vm.action.error = true;
                     if (newVal !== undefined) {
                         bindWatchElement();
+
+                  			trackrService.trackEvt({
+                  				category: 'action',
+                  				action: 'select_type',
+                          label: newVal.id
+                        });
                     }
                     else {
                         unbindWatchElement();
+
+                  			trackrService.trackEvt({
+                  				category: 'action',
+                  				action: 'unselect_type'
+                        });
                     }
                 }
             });
@@ -67,5 +78,3 @@ angular.module('youcantest').directive('actionSelector', function () {
         }
     }
 });
-
-
