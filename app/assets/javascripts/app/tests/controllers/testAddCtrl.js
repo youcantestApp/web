@@ -157,6 +157,11 @@ angular.module('youcantest').controller('TestAddCtrl', function ($location, $rou
     };
     vm.save = save;
 
+		function cancel() {
+      $location.path('/'+ $routeParams.user +'/tests');
+		}
+		vm.cancel = cancel;
+
     (function () {
         vm.loading = false;
     })();

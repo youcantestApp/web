@@ -1,7 +1,7 @@
 <div id="element-action-{{vm.index}}" class="form action"
      ng-class="{ 'test-item-error': vm.action.error === true }" >
-    <a href="javascript:void(0);" ng-click="vm.remove()" style="float:right;">
-        <span class="glyphicon glyphicon-remove"></span>
+    <a href="javascript:void(0);" ng-click="vm.remove()" class="remove-item">
+      <i class="fa fa-times"></i>
     </a>
     <div class="form-inline" style="text-align:center;">
         <div class="actionType dropdown form-group">

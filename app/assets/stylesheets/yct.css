@@ -93,3 +93,10 @@ div.input-text input.btn {
     width:100px !important;
 
 }
+
+a.remove-item {
+	color: #D8D8D8;
+	position: absolute;
+	padding-left: 350px;
+	margin-top: -10px;
+}
