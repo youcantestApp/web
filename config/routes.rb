@@ -25,7 +25,7 @@ Rails.application.routes.draw do
     get  'result/getListByTestId'
 
     get '/' => 'index#index'
-    get '*path' => 'index#index'
+    # get '*path' => 'index#index'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
