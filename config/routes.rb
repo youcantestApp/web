@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
     post 'test/insert'
     post 'test/schedule'
+    post 'test/executeNow' => 'test#executeNow'
     post 'test/delete'
     get  'test/get/:testId' => 'test#get'
 
@@ -25,7 +26,7 @@ Rails.application.routes.draw do
     get  'result/getListByTestId'
 
     get '/' => 'index#index'
-    # get '*path' => 'index#index'
+    get '*path' => 'index#index'
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
