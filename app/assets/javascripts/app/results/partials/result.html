@@ -16,43 +16,31 @@
         </div>
         <div class="row" ng-repeat="element in vm.result.actions">
             <div class="container">
-                <div class="col-sm-6" ng-if="element.action.type === 'click'">
-                    clicked on selector <span>{{::element.action.selector}}</span>
-                </div>
-                <div class="col-sm-6" ng-if="element.action.type === 'setValue'">
-                    set the value <span>{{::element.action.value}}</span> on selector <span>{{::element.action.selector}}</span>
-                </div>
-                <div class="col-sm-2">{{::element.success ? 'Passed' : 'Fail'}}</div>
-            </div>
-        </div>
-        <div ng-if="vm.result.actions.length === 0">There are no actions.</div>
+                <div class="col-sm-6">
+                  {{::element.result}}: {{::element.message}}
+                  <div ng-if="element.error">
+                    {{::JSON.stringfy(element.error)}}
 
+                  </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row" ng-if="vm.result.actions.length === 0">
+          There are no actions.
+        </div>
         <div class="row">
             <h4>Asserts</h4>
         </div>
         <div class="row" ng-repeat="element in vm.result.asserts">
             <div class="container">
-                <div class="col-sm-6" ng-if="element.assert.type === 'isElementExists'">
-                    Check if element <span>{{::element.assert.selector}}</span> is exists
+                <div class="col-sm-6">
+                  {{::element.result}}: {{::element.message}}
                 </div>
-                <div class="col-sm-6" ng-if="element.assert.type === 'isElementVisible'">
-                    Check if element <span>{{::element.assert.selector}}</span> is visible
-                </div>
-                <div class="col-sm-6" ng-if="element.assert.type === 'checkUrl'">
-                    Check if url contains <span>{{::element.assert.value}}</span>
-                </div>
-                <div class="col-sm-6" ng-if="element.assert.type === 'assertValue'">
-                    check if selector <span>{{::element.assert.selector}}</span>
-                    has value <span>{{::element.assert.value}}</span>
-                </div>
-                <div class="col-sm-6" ng-if="element.assert.type === 'hasClass'">
-                    check if selector <span>{{::element.assert.selector}}</span>
-                    has class <span>{{::element.assert.value}}</span>
-                </div>
-                <div class="col-sm-2">{{::element.success ? 'Passed' : 'Fail'}}</div>
             </div>
         </div>
-        <div ng-if="!vm.result && !vm.loading">There are no registered tests yet.</div>
+        <div class="row" ng-if="!vm.result && !vm.loading">
+          There are no registered tests yet.
+        </div>
     </div>
 </div>
-
