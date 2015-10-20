@@ -24,7 +24,7 @@ class ResultController < ApplicationController
       @test = Test.find(@testId)
       @data[:test] = @test
 
-      @results = Result.where(testId: @testId)
+      @results = Result.where(testId: @testId).order_by(:executionDate => 'desc')
 
       @results.each_with_index { |item, idx|
         @data[:results].push(item)

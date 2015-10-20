@@ -205,6 +205,8 @@ class TestController < ApplicationController
       return
     end
 
+    @results.sort! { |a,b| a[:lastResult] && b[:lastResult] ? b[:lastResult].executionDate <=> a[:lastResult].executionDate : 0 }
+
     render json: @results
   end
 
