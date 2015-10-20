@@ -28,6 +28,11 @@ angular.module('youcantest').controller('ResultListCtrl', function (testReposito
     vm.elements = [];
     var getResults = function () {
        return testRepository.getResults().then(function (result) {
+           _.each(result.data, function(element) {
+             if(element.lastResult) {
+               element.lastResult.executionDateFormat = moment(element.lastResult.executionDate).format('LLL');
+             }
+           });
            vm.tests = result.data;
            vm.loading = false;
 

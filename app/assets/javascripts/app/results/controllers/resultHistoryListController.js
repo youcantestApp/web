@@ -28,6 +28,9 @@ angular.module('youcantest').controller('ResultHistoryListCtrl', function ($rout
     vm.data = [];
     var getHistoryList = function (id) {
         return resultRepository.getResultList(id).then(function (result) {
+           _.each(result.data.results, function(element) {
+             element.executionDateFormat = moment(element.executionDate).format('LLL');
+           });
             vm.data = result.data;
             vm.loading = false;
 
